@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رمضان ياسمين 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        body {
+            background-color: #0a2a43;
+            color: #f5f5f5;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(74, 20, 140, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.2) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* شاشة كلمة المرور */
+        #password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a2a43 0%, #1a3a5f 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+        
+        .password-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .password-container h2 {
+            color: #ffd700;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .password-container p {
+            margin-bottom: 30px;
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+        
+        #password-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .password-input {
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #4a148c;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .password-input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .password-btn {
+            padding: 15px;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, #4a148c, #8e24aa);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .password-btn:hover {
+            background: linear-gradient(to right, #8e24aa, #4a148c);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.4);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-size: 1rem;
+            display: none;
+        }
+        
+        .hint {
+            margin-top: 20px;
+            color: #ffd700;
+            font-size: 0.9rem;
+        }
+        
+        /* المحتوى الرئيسي */
+        #main-content {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        header {
+            background: linear-gradient(to right, rgba(10, 42, 67, 0.9), rgba(74, 20, 140, 0.8));
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            margin-bottom: 10px;
+        }
+        
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: #b3e5fc;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            color: #ffd700;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-title {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            font-size: 1.5rem;
+        }
+        
+        .prayer-times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .prayer-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.7), rgba(142, 36, 170, 0.7));
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(50% - 10px);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .prayer-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(142, 36, 170, 0.8), rgba(74, 20, 140, 0.8));
+        }
+        
+        .prayer-name {
+            font-size: 1.2rem;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .prayer-time {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .current-prayer {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 193, 7, 0.3));
+            border-color: #ffd700;
+        }
+        
+        .azkar-list {
+            list-style-type: none;
+        }
+        
+        .azkar-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #4a148c;
+            transition: all 0.3s;
+        }
+        
+        .azkar-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-right-color: #ffd700;
+            transform: translateX(5px);
+        }
+        
+        .azkar-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .azkar-count {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .count-btn {
+            background: rgba(74, 20, 140, 0.5);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .count-btn:hover {
+            background: rgba(74, 20, 140, 0.8);
+        }
+        
+        .ramadan-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-label {
+            color: #b3e5fc;
+        }
+        
+        .info-value {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #b3e5fc;
+            margin-top: 5px;
+        }
+        
+        .yasmine-section {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(142, 36, 170, 0.2), rgba(74, 20, 140, 0.2));
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .yasmine-title {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .yasmine-text {
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .heart {
+            color: #ff4081;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.2); }
+            10% { transform: scale(1.1); }
+            15% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        .animated-element {
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+        
+        .mosque {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            color: #b3e5fc;
+            font-size: 0.9rem;
+        }
+        
+        /* الأنيميشات المتحركة */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .prayer-card {
+                width: 100%;
+            }
+            
+            .password-container {
+                padding: 30px 20px;
+                width: 95%;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة كلمة المرور -->
+    <div id="password-screen">
+        <div class="password-container floating">
+            <h2><i class="fas fa-star-and-crescent"></i> مرحباً بكم في موقع رمضان ياسمين 2026</h2>
+            <p>الموقع يحتوي على كل ما تحتاجه في شهر رمضان المبارك</p>
+            <form id="password-form">
+                <input type="password" id="password-input" class="password-input" placeholder="أدخل كلمة المرور" required>
+                <button type="submit" class="password-btn">الدخول إلى الموقع <i class="fas fa-door-open"></i></button>
+                <div class="error-message" id="error-message">كلمة المرور غير صحيحة. حاول مرة أخرى.</div>
+            </form>
+            <div class="hint">تلميح: كلمة المرور هي "رمضان كريم"</div>
+        </div>
+    </div>
+    
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content">
+        <header>
+            <div class="header-decoration">
+                <i class="fas fa-star-and-crescent"></i>
+            </div>
+            <h1 class="header-title">رمضان ياسمين 2026</h1>
+            <p class="header-subtitle">موقع متكامل لشهر رمضان المبارك - كل عام وأنتم بخير</p>
+        </header>
+        
+        <div class="container">
+            <!-- قسم مواقيت الصلاة -->
+            <div class="grid">
+                <div class="card pulse">
+                    <h2 class="card-title"><i class="fas fa-clock"></i> مواقيت الصلاة</h2>
+                    <div class="prayer-times" id="prayer-times">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </div>
+                </div>
+                
+                <!-- قسم أذكار الصباح -->
+                <div class="card floating">
+                    <h2 class="card-title"><i class="fas fa-sun"></i> أذكار الصباح</h2>
+                    <ul class="azkar-list" id="morning-azkar">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </ul>
+                </div>
+                
+                <!-- قسم أذكار المساء -->
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-moon"></i> أذكار المساء</h2>
+                    <ul class="azkar-list" id="evening-azkar">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </ul>
+                </div>
+                
+                <!-- قسم معلومات رمضان -->
+                <div class="card pulse">
+                    <h2 class="card-title"><i class="fas fa-info-circle"></i> معلومات رمضان 2026</h2>
+                    <div class="ramadan-info">
+                        <div class="info-item">
+                            <span class="info-label">تاريخ رمضان:</span>
+                            <span class="info-value">فبراير - مارس 2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">عدد أيام الصيام:</span>
+                            <span class="info-value">30 يوم</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">بداية رمضان:</span>
+                            <span class="info-value">الجمعة 14 فبراير 2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ليلة القدر:</span>
+                            <span class="info-value">ليلة 27 رمضان</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">عيد الفطر:</span>
+                            <span class="info-value">السبت 15 مارس 2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">30</div>
+                            <div class="countdown-label">يوم</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">12</div>
+                            <div class="countdown-label">ساعة</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">45</div>
+                            <div class="countdown-label">دقيقة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- قسم ياسمين -->
+            <div class="yasmine-section floating">
+                <h2 class="yasmine-title">إلى حبيبتي ياسمين <span class="heart">❤</span></h2>
+                <p class="yasmine-text">
+                    في هذا الشهر الكريم، أهديك أجمل معاني الحب والاحترام. 
+                    رمضان هو شهر الرحمة والمغفرة، وأتمنى أن يكون هذا الشهر بداية خير وسعادة لحياتنا معاً.
+                    كل عام وأنتِ إلى قلبي أقرب، وإلى رضا الله أقرب.
+                    أسأل الله أن يجمعنا في هذا الشهر على طاعته، وأن يجعله شهر خير وبركة علينا.
+                </p>
+                <p class="yasmine-text">
+                    أتمنى لكِ رمضاناً مباركاً مليئاً بالصحة والسعادة والرضا. 
+                    وأن يرزقنا الله فيه حسنات تملأ ميزاننا، وذنوباً تمحى من صحائفنا.
+                </p>
+            </div>
+        </div>
+        
+        <div class="mosque">
+            <i class="fas fa-mosque"></i>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2026 موقع رمضان ياسمين - كل عام وأنتم بخير</p>
+            <p>تم التصميم بكل الحب لشهر رمضان المبارك</p>
+        </footer>
+    </div>
+    
+    <script>
+        // التحقق من كلمة المرور
+        document.getElementById('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const passwordInput = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            // كلمة المرور الصحيحة هي "رمضان كريم"
+            if (passwordInput === "رمضان كريم") {
+                // إخفاء شاشة كلمة المرور وإظهار المحتوى
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                // إنشاء العناصر المتحركة
+                createAnimatedElements();
+            } else {
+                errorMessage.style.display = 'block';
+                // اهتزاز حقل الإدخال
+                document.getElementById('password-input').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById('password-input').style.animation = '';
+                }, 500);
+            }
+        });
+        
+        // إضافة تأثير اهتزاز
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+                20%, 40%, 60%, 80% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // تعيين مواقيت الصلاة (افتراضية - يمكن ربطها بموقع مواقيت حقيقي)
+        const prayerTimes = [
+            { name: "الفجر", time: "4:45 ص", current: false },
+            { name: "الشروق", time: "6:15 ص", current: false },
+            { name: "الظهر", time: "12:30 م", current: true },
+            { name: "العصر", time: "3:45 م", current: false },
+            { name: "المغرب", time: "6:20 م", current: false },
+            { name: "العشاء", time: "8:00 م", current: false }
+        ];
+        
+        // ملء مواقيت الصلاة
+        const prayerTimesContainer = document.getElementById('prayer-times');
+        prayerTimes.forEach(prayer => {
+            const prayerCard = document.createElement('div');
+            prayerCard.className = `prayer-card ${prayer.current ? 'current-prayer' : ''}`;
+            prayerCard.innerHTML = `
+                <div class="prayer-name">${prayer.name}</div>
+                <div class="prayer-time">${prayer.time}</div>
+            `;
+            prayerTimesContainer.appendChild(prayerCard);
+        });
+        
+        // أذكار الصباح
+        const morningAzkar = [
+            { text: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", count: 1 },
+            { text: "اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", count: 1 },
+            { text: "اللهم إني أصبحت أشهدك، وأشهد حملة عرشك، وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك.", count: 4 },
+            { text: "سبحان الله وبحمده عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته.", count: 3 }
+        ];
+        
+        // أذكار المساء
+        const eveningAzkar = [
+            { text: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", count: 1 },
+            { text: "اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", count: 1 },
+            { text: "اللهم إني أمسيت أشهدك، وأشهد حملة عرشك، وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك.", count: 4 },
+            { text: "أعوذ بكلمات الله التامات من شر ما خلق.", count: 3 }
+        ];
+        
+        // ملء أذكار الصباح
+        const morningAzkarContainer = document.getElementById('morning-azkar');
+        morningAzkar.forEach(zekr => {
+            const li = document.createElement('li');
+            li.className = 'azkar-item';
+            li.innerHTML = `
+                <div class="azkar-text">${zekr.text}</div>
+                <div>
+                    <button class="count-btn" onclick="countZekr(this)">تسبيح <i class="fas fa-hashtag"></i></button>
+                    <span class="azkar-count">عدد التسبيحات: <span>0</span>/<span>${zekr.count}</span></span>
+                </div>
+            `;
+            morningAzkarContainer.appendChild(li);
+        });
+        
+        // ملء أذكار المساء
+        const eveningAzkarContainer = document.getElementById('evening-azkar');
+        eveningAzkar.forEach(zekr => {
+            const li = document.createElement('li');
+            li.className = 'azkar-item';
+            li.innerHTML = `
+                <div class="azkar-text">${zekr.text}</div>
+                <div>
+                    <button class="count-btn" onclick="countZekr(this)">تسبيح <i class="fas fa-hashtag"></i></button>
+                    <span class="azkar-count">عدد التسبيحات: <span>0</span>/<span>${zekr.count}</span></span>
+                </div>
+            `;
+            eveningAzkarContainer.appendChild(li);
+        });
+        
+        // دالة عداد التسبيح
+        window.countZekr = function(button) {
+            const azkarCount = button.parentElement.querySelector('.azkar-count span:first-child');
+            const totalCount = button.parentElement.querySelector('.azkar-count span:last-child');
+            let currentCount = parseInt(azkarCount.textContent);
+            const maxCount = parseInt(totalCount.textContent);
+            
+            if (currentCount < maxCount) {
+                currentCount++;
+                azkarCount.textContent = currentCount;
+                
+                // تأثير عند الوصول للعدد الكامل
+                if (currentCount === maxCount) {
+                    button.parentElement.parentElement.style.background = 'rgba(255, 215, 0, 0.1)';
+                    button.parentElement.parentElement.style.borderRightColor = '#4a148c';
+                }
+            }
+        };
+        
+        // العد التنازلي لرمضان
+        function updateCountdown() {
+            // تاريخ رمضان 2026 (افتراضي)
+            const ramadanDate = new Date('February 14, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeDifference = ramadanDate - now;
+            
+            // إذا مر تاريخ رمضان، نعرض العد التنازلي للعام المقبل
+            if (timeDifference < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+        
+        // تحديث العد التنازلي كل دقيقة
+        setInterval(updateCountdown, 60000);
+        updateCountdown(); // التشغيل الأولي
+        
+        // إنشاء عناصر متحركة عشوائية
+        function createAnimatedElements() {
+            const colors = ['#ffd700', '#4a148c', '#8e24aa', '#ffffff', '#b3e5fc'];
+            
+            for (let i = 0; i < 30; i++) {
+                // نجوم متحركة
+                const star = document.createElement('div');
+                star.className = 'star animated-element';
+                star.style.width = Math.random() * 5 + 2 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(star);
+                
+                // عناصر أخرى متحركة
+                if (i < 5) {
+                    const element = document.createElement('div');
+                    element.className = 'animated-element floating';
+                    element.style.position = 'absolute';
+                    element.style.fontSize = Math.random() * 30 + 20 + 'px';
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.top = Math.random() * 100 + '%';
+                    element.style.opacity = '0.1';
+                    element.style.zIndex = '-1';
+                    
+                    const icons = ['fa-star', 'fa-moon', 'fa-heart', 'fa-gem', 'fa-sun'];
+                    element.innerHTML = `<i class="fas ${icons[i]}"></i>`;
+                    element.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    document.body.appendChild(element);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
